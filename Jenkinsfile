@@ -9,7 +9,7 @@ node{
     become: true, 
     playbook: 'install.yaml',
     inventory: 'hosts',
-    credentialsId: 'fa847de9-9d9e-49b2-bee5-f88f17260161',
+    credentialsId: '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',
     disableHostKeyChecking: true
     )
   }
