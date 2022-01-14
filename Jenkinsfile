@@ -8,7 +8,7 @@ ansiblePlaybook (
 colorized: true,
 become: true,
 playbook: 'installation.yaml',
-inventory: 'hosts.yaml'
+inventory: 'hosts'
 )
 }
 }
