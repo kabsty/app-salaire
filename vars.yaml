@@ -1,0 +1,18 @@
+pkg:
+  - vim
+  - php
+  - httpd
+  - nano
+  - epel-release
+
+mysql_dbname:
+  - dbvalentinmassiouform
+
+mysql_user:
+  - massiouv
+
+mysql_password:
+  - ""
+
+db_host:
+  - 192.168.80.132

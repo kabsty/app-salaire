@@ -1,0 +1,7 @@
+---
+root_mariadb_password: ""
+mysql_user: "massiouv"
+mysql_password: ""
+mysql_dbname: "dbvalentinmassiouform"
+db_host: "192.168.80.132"
+webserver_host: "192.168.80.132"
