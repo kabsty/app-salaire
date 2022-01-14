@@ -5,8 +5,6 @@
   vars_files:
     - ./vars.yaml
     - ./main.yaml
-  
-  become: yes
 
   handlers:
     - name: restart_httpd
