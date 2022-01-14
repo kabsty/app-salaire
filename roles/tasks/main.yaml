@@ -1,0 +1,68 @@
+---
+# tasks file for nginx
+
+- name: add nginx repository
+  yum:
+   name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+   state: present
+
+- name: install nginx
+  yum:
+   name: nginx 
+   state: present
+
+- name: create user www-data
+  user:
+     name: "{{ user }}"
+
+- name: create directories
+  file:
+   path: "{{ item }}"
+   state: directory
+   owner: www-data
+   group: www-data
+   mode: 0775
+  loop:
+   - /var/www/valentin-massiou.com/html
+
+- name: create index.html file
+  template:
+   src: index.html.j2
+   dest: "{{ item }}"
+  loop:
+   - /var/www/web.valentinmassiou.form/html/index.html
+
+- name: create directory forte sites available and enabled
+  file:
+   path: "{{ item }}"
+   state: directory
+   owner: www-data
+   group: www-data
+   mode: 0775
+  loop:
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
+
+- name: Looking for server blocks 
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+  notify:
+     - restart_nginx
+
+- name: Insert config in new config file
+  template:
+    src: valentin-massiou.com.conf.j2
+    dest: "{{ item }}"
+  loop:
+   - /etc/nginx/sites-available/valentin-massiou.com.conf
+   - /etc/nginx/sites-enabled/valentin-massiou.com.conf
+  notify:
+   - restart_nginx
+
+- name: set up local hosts file
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ item }}"
+  loop:
+   - '192.168.80.132 web.valentinmassiou.form'

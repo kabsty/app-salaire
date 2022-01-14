@@ -1,0 +1,11 @@
+---
+
+- hosts: 192.168.80.132
+
+  remote_user: root
+
+  roles:
+   - pre-requis
+   - nginx 
+
+ 
